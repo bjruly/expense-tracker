@@ -1,0 +1,14 @@
+# Virtual environment - không push lên GitHub
+venv/
+
+# Database file - dữ liệu cá nhân, không push
+data/expense.db
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Editor
+.vscode/
+.idea/
