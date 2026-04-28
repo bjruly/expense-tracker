@@ -56,7 +56,7 @@ Không dùng framework nặng. Không abstraction thừa. Mỗi dòng code đề
 ## Chạy ứng dụng
 
 ```bash
-git clone https://github.com/<username>/expense-tracker.git
+git clone https://github.com/bjruly/expense-tracker.git
 cd expense-tracker
 
 python -m venv venv
