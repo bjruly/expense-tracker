@@ -4,7 +4,7 @@ from pathlib import Path
 
 DB_PATH = Path("data/expense.db")
 
-def get_connection():
+def get_connection() -> sqlite3.Connection:
     os.makedirs(DB_PATH.parent, exist_ok=True) 
 
     conn = sqlite3.connect(DB_PATH)
@@ -16,20 +16,29 @@ def create_tables() -> None:
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("""
-        CREATE TABLE IF NOT EXISTS expenses (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            description TEXT NOT NULL,
-            amount REAL NOT NULL,
-            date TEXT NOT NULL
-        CREATE TABLE IF NOT EXISTS budgets (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            category TEXT NOT NULL,
-            amount REAL NOT NULL,
-            month TEXT NOT NULL
         CREATE TABLE IF NOT EXISTS categories (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT NOT NULL UNIQUE)
+            name TEXT NOT NULL UNIQUE,
+            icon TEXT,
+            color TEXT);
     """)
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS budgets (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            category_id INTEGER NOT NULL REFERENCES categories(id),
+            month TEXT NOT NULL,
+            monthly_limit REAL NOT NULL);
+    """)
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS transactions (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            amount REAL NOT NULL,
+            category_id INTEGER NOT NULL REFERENCES categories(id),
+            date TEXT NOT NULL,
+            description TEXT,
+            type TEXT NOT NULL CHECK (type IN ('expense', 'income')),
+            created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+        """)
     conn.commit()
     conn.close()
 
@@ -52,8 +61,8 @@ def seed_default_categories() -> None:
             ("Other",        "📦", "#B0B0B0"),
         ]
         cursor.executemany("INSERT INTO categories (name, icon, color) VALUES (?, ?, ?)", categories)
-        conn.commit()
-        conn.close()
+    conn.commit()
+    conn.close()
 
 def initialize_database() -> None:
     create_tables()
