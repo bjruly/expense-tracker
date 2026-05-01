@@ -28,11 +28,49 @@ class ExpenseManager:
         type: str
     ) -> Transaction:
         # TODO: viết câu INSERT, dùng cursor.lastrowid để lấy id vừa tạo
-        pass
+        cursor = self.conn.cursor()
+        cursor.execute("""
+            INSERT INTO transactions (amount, category_id, description, date, type)
+            VALUES (?, ?, ?, ?, ?)
+        """, (amount, category_id, description, date, type))
+        self.conn.commit()
+        transaction_id = cursor.lastrowid
+        return Transaction(
+            id=transaction_id,
+            amount=amount,
+            category_id=category_id,
+            description=description,
+            date=date,
+            type=type
+        )
 
     def get_transactions(self, filters: dict = {}) -> list[Transaction]:
         # TODO: viết câu SELECT, xử lý filters
-        pass
+        query = "SELECT * FROM transactions WHERE 1=1"
+        params = []
+
+        if "category_id" in filters:
+            query += " AND category_id = ?"
+            params.append(filters["category_id"])
+
+        if "month" in filters:
+            query += " AND date LIKE ?"
+            params.append(f"{filters['month']}%")
+        cursor = self.conn.cursor()
+        cursor.execute(query, params)
+        rows = cursor.fetchall()
+        transactions = []
+        for row in rows:
+            transactions.append(Transaction(
+                # Thay row[0], row[1]... thành:
+                id=row["id"],
+                amount=row["amount"],
+                category_id=row["category_id"],
+                description=row["description"],
+                date=row["date"],
+                type=row["type"]
+            ))
+        return transactions
 
     def update_transaction(self, id: int, **kwargs) -> bool:
         # TODO: viết câu UPDATE
