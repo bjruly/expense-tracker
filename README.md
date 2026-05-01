@@ -56,7 +56,7 @@ Không dùng framework nặng. Không abstraction thừa. Mỗi dòng code đề
 ## Chạy ứng dụng
 
 ```bash
-git clone https://github.com/bjruly/expense-tracker.git
+git clone https://github.com/<username>/expense-tracker.git
 cd expense-tracker
 
 python -m venv venv
@@ -100,7 +100,7 @@ CREATE TABLE budgets (
 
 ## Tiến độ
 
-    [x] Giai đoạn 1 — Core          CRUD giao dịch, lịch sử, tổng thu/chi
+    [ ] Giai đoạn 1 — Core          CRUD giao dịch, lịch sử, tổng thu/chi
     [ ] Giai đoạn 2 — Analytics     Biểu đồ cột, tròn, so sánh tháng
     [ ] Giai đoạn 3 — Budget        Ngân sách, cảnh báo 80% / 100%
     [ ] Giai đoạn 4 — Export & AI   Xuất Excel, tự phân loại giao dịch
@@ -117,6 +117,26 @@ Push commit đầu tiên lên GitHub.
 Hoàn thành modules/database.py.
 Viết get_connection(), create_tables(), seed_default_categories(), initialize_database().
 Hiểu được Connection, Cursor, row_factory trong sqlite3.
+
+**29/04/2026**
+Review và sửa lại database.py sau khi nhận phản hồi.
+Thêm type hint cho get_connection().
+Đưa conn.close() ra ngoài khối logic chính, tránh resource leak.
+Cập nhật schema cho đúng với project brief: đổi tên bảng, tên cột, kiểu dữ liệu.
+Sửa lỗi cú pháp trong cursor.execute() của create_tables().
+Tạo file modules/expense_manager.py với đầy đủ cấu trúc class.
+
+**30/04/2026**
+Hoàn thiện khung expense_manager.py.
+Định nghĩa @dataclass Transaction và class ExpenseManager.
+Viết skeleton các method: add_transaction(), get_transactions(), update_transaction(), delete_transaction().
+Hiểu được @dataclass, cursor.lastrowid, **kwargs.
+
+**01/05/2026**
+Hoàn thành logic CRUD trong expense_manager.py.
+Viết add_transaction() với INSERT và trả về Transaction object.
+Viết get_transactions() với dynamic query, xử lý filters theo category_id và month.
+Viết update_transaction() và delete_transaction(), kiểm tra kết quả qua cursor.rowcount.
 
 ---
 
