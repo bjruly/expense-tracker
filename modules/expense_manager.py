@@ -73,12 +73,20 @@ class ExpenseManager:
         return transactions
 
     def update_transaction(self, id: int, **kwargs) -> bool:
-        # TODO: viết câu UPDATE
-        pass
+        # TODO: viết câu UPDATE, xử lý kwargs, 
+        set_clause = ", ".join([f"{key} = ?" for key in kwargs.keys()])
+        params = list(kwargs.values()) + [id]
+        cursor = self.conn.cursor()
+        cursor.execute(f"UPDATE transactions SET {set_clause} WHERE id = ?", params)
+        self.conn.commit()
+        return cursor.rowcount > 0
 
     def delete_transaction(self, id: int) -> bool:
-        # TODO: viết câu DELETE
-        pass
+        # TODO: viết câu DELETE, 
+        cursor = self.conn.cursor()
+        cursor.execute("DELETE FROM transactions WHERE id = ?", (id,))
+        self.conn.commit()
+        return cursor.rowcount > 0
 
     def close(self):
         self.conn.close()
