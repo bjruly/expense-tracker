@@ -16,8 +16,8 @@ class Transaction:
 
 class ExpenseManager:
 
-    def __init__(self):
-        self.conn = get_connection()
+    def __init__(self, conn = None):
+        self.conn = conn if conn is not None else get_connection()
 
     def add_transaction(
         self,
