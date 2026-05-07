@@ -11,9 +11,10 @@ def get_connection() -> sqlite3.Connection:
     conn.row_factory = sqlite3.Row  
     return conn
 
-def create_tables() -> None:
-
-    conn = get_connection()
+def create_tables(conn = None) -> None:
+    internal_conn = conn is None
+    if internal_conn:
+        conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS categories (
@@ -40,7 +41,8 @@ def create_tables() -> None:
             created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
         """)
     conn.commit()
-    conn.close()
+    if internal_conn:
+        conn.close()
 
 def seed_default_categories() -> None:
     conn = get_connection()
