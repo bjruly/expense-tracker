@@ -109,40 +109,46 @@ CREATE TABLE budgets (
 
 ## Nhật ký
 
-**27/04/2026**
-Khởi tạo project. Tạo cấu trúc thư mục, requirements.txt, .gitignore.
-Push commit đầu tiên lên GitHub.
+27/04/2026
 
-**28/04/2026**
-Hoàn thành modules/database.py.
-Viết get_connection(), create_tables(), seed_default_categories(), initialize_database().
-Hiểu được Connection, Cursor, row_factory trong sqlite3.
+- Khởi tạo project. Tạo cấu trúc thư mục, requirements.txt, .gitignore.
+- Push commit đầu tiên lên GitHub.
 
-**29/04/2026**
-Review và sửa lại database.py sau khi nhận phản hồi.
-Thêm type hint cho get_connection().
-Đưa conn.close() ra ngoài khối logic chính, tránh resource leak.
-Cập nhật schema cho đúng với project brief: đổi tên bảng, tên cột, kiểu dữ liệu.
-Sửa lỗi cú pháp trong cursor.execute() của create_tables().
-Tạo file modules/expense_manager.py với đầy đủ cấu trúc class.
+28/04/2026
 
-**30/04/2026**
-Hoàn thiện khung expense_manager.py.
-Định nghĩa @dataclass Transaction và class ExpenseManager.
-Viết skeleton các method: add_transaction(), get_transactions(), update_transaction(), delete_transaction().
-Hiểu được @dataclass, cursor.lastrowid, **kwargs.
+- Hoàn thành modules/database.py.
+- Viết get_connection(), create_tables(), seed_default_categories(), initialize_database().
+- Hiểu được Connection, Cursor, row_factory trong sqlite3.
 
-**01/05/2026**
-Hoàn thành logic CRUD trong expense_manager.py.
-Viết add_transaction() với INSERT và trả về Transaction object.
-Viết get_transactions() với dynamic query, xử lý filters theo category_id và month.
-Viết update_transaction() và delete_transaction(), kiểm tra kết quả qua cursor.rowcount.
+29/04/2026
 
-**07/05/2026**
-Viết pytest cho expense_manager.py.
-Hiểu được khái niệm fixture trong pytest và in-memory database.
-Sửa create_tables() để nhận conn từ bên ngoài, tránh hardcode đường dẫn file.
-Sửa ExpenseManager.__init__() để nhận conn inject từ bên ngoài.
+- Review và sửa lại database.py sau khi nhận phản hồi.
+- Thêm type hint cho get_connection().
+- Đưa conn.close() ra ngoài khối logic chính, tránh resource leak.
+- Cập nhật schema cho đúng với project brief: đổi tên bảng, tên cột, kiểu dữ liệu.
+- Sửa lỗi cú pháp trong cursor.execute() của create_tables().
+- Tạo file modules/expense_manager.py với đầy đủ cấu trúc class.
+
+30/04/2026
+
+- Hoàn thiện khung expense_manager.py.
+- Định nghĩa @dataclass Transaction và class ExpenseManager.
+- Viết skeleton các method: add_transaction(), get_transactions(), update_transaction(), delete_transaction().
+- Hiểu được @dataclass, cursor.lastrowid, **kwargs.
+
+01/05/2026
+
+- Hoàn thành logic CRUD trong expense_manager.py.
+- Viết add_transaction() với INSERT và trả về Transaction object.
+- Viết get_transactions() với dynamic query, xử lý filters theo category_id và month.
+- Viết update_transaction() và delete_transaction(), kiểm tra kết quả qua cursor.rowcount.
+
+07/05/2026
+
+- Hiểu được khái niệm fixture trong pytest và in-memory database.
+- Sửa create_tables() để nhận conn từ bên ngoài, tránh hardcode đường dẫn file.
+- Sửa ExpenseManager.__init__() để nhận conn inject từ bên ngoài.
+
 ---
 
 *Sinh viên năm 2 — Python — Tích hợp OOP + CSDL + AI*
