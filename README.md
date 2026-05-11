@@ -138,6 +138,11 @@ Viết add_transaction() với INSERT và trả về Transaction object.
 Viết get_transactions() với dynamic query, xử lý filters theo category_id và month.
 Viết update_transaction() và delete_transaction(), kiểm tra kết quả qua cursor.rowcount.
 
+**07/05/2026**
+Viết pytest cho expense_manager.py.
+Hiểu được khái niệm fixture trong pytest và in-memory database.
+Sửa create_tables() để nhận conn từ bên ngoài, tránh hardcode đường dẫn file.
+Sửa ExpenseManager.__init__() để nhận conn inject từ bên ngoài.
 ---
 
 *Sinh viên năm 2 — Python — Tích hợp OOP + CSDL + AI*
