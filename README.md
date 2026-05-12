@@ -149,6 +149,12 @@ CREATE TABLE budgets (
 - Sửa create_tables() để nhận conn từ bên ngoài, tránh hardcode đường dẫn file.
 - Sửa ExpenseManager.__init__() để nhận conn inject từ bên ngoài.
 
+13/05/2026
+
+- Viết 4 unit test cho ExpenseManager: add, get, update, delete.
+- Hiểu được cách dùng fixture trong pytest và in-memory database.
+- Sửa lỗi ModuleNotFoundError bằng cách tạo conftest.py ở thư mục gốc.
+- Tất cả 4 test cases passed.
 ---
 
 *Sinh viên năm 2 — Python — Tích hợp OOP + CSDL + AI*
