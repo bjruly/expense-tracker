@@ -155,6 +155,12 @@ CREATE TABLE budgets (
 - Hiểu được cách dùng fixture trong pytest và in-memory database.
 - Sửa lỗi ModuleNotFoundError bằng cách tạo conftest.py ở thư mục gốc.
 - Tất cả 4 test cases passed.
+
+18/05/2026
+
+- Quay lại project sau kỳ nghỉ.
+- Ôn lại tiến độ: hoàn thành database.py, expense_manager.py, và unit tests.
+- Bắt đầu chuẩn bị cho analytics.py, tạo file modules/analytics.py.
 ---
 
 *Sinh viên năm 2 — Python — Tích hợp OOP + CSDL + AI*
