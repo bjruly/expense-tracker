@@ -156,11 +156,14 @@ CREATE TABLE budgets (
 - Sửa lỗi ModuleNotFoundError bằng cách tạo conftest.py ở thư mục gốc.
 - Tất cả 4 test cases passed.
 
-18/05/2026
+19/05/2026
 
-- Quay lại project sau kỳ nghỉ.
-- Ôn lại tiến độ: hoàn thành database.py, expense_manager.py, và unit tests.
-- Bắt đầu chuẩn bị cho analytics.py, tạo file modules/analytics.py.
+- Bắt đầu viết analytics.py.
+- Hiểu được LIKE và strftime() để filter theo tháng trong SQLite.
+- Hoàn thành monthly_summary() với CASE WHEN, tính income, expense, balance.
+- Hoàn thành category_breakdown() với JOIN, GROUP BY, ORDER BY.
+- Setup WakaTime extension trên VSCode.
+- Nâng cấp GitHub profile: thêm trophy, dev quote, WakaTime stats, header wave, visitor counter, contribution snake.
 ---
 
 *Sinh viên năm 2 — Python — Tích hợp OOP + CSDL + AI*
